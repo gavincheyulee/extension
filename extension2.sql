@@ -34,7 +34,6 @@ CREATE OR REPLACE VIEW PGA AS(
        SELECT sid1, unnest (sa2)"sid2",plabel, MB
        FROM  PGA_group_policy2
 );
-(label=plabel OR (label IS NULL AND plabel IS NULL))
 
 CREATE OR REPLACE VIEW PGA_violation AS (
 SELECT fid, MB
