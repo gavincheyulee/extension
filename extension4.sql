@@ -4,6 +4,7 @@ label=null means the flow must go through fw0/lb0 and may need dynamic FW/LB.
 label=1 means the flow is good and next dynamic MB isn't needed.
 label=-1 means the flow is bad and shall be dropped.
 label=0 means the flow is suspicious and the next dynamic MB is needed.
+And there is an assumption that after 2 dynamic MBs, if the flow is still suspicious, it would be dropped.
 */
 DROP TABLE IF EXISTS PGA_policy CASCADE;
 CREATE UNLOGGED TABLE PGA_policy (
