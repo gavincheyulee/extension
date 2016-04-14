@@ -241,10 +241,10 @@ select * from rm;
 
 
 update flow_label
-set label=0,currentMB='LB0'
+set label=0,currentMB='FW0'
 where fid=3;
 select * from rm;
 update flow_label
-set label=-1,currentMB='LB1'
+set label=-1,currentMB='FW1'
 where fid=3;
 select * from rm;
