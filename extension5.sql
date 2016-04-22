@@ -8,6 +8,24 @@ there are 3 possible violations:
 1. label=0 in pga : delete the next dynamic fw=0 in rm
 2. label=-1 in pag : delete this flow (there is sth wrong in this part from line 123 to 148)
 3. label=1 in pga : set the all following dynamic fws=0 in rm
+the error:
+CREATE OR REPLACE RULE PGA_repair2 AS
+ON DELETE TO PGA_violation2
+       DO INSTEAD DELETE FROM rm where fid=OLD.fid;
+this rule doesn't work when i execute the sql statement 'delete from PGA_violation2'
+there is no deletion happening in rm 
+PGA5=> select * from PGA_violation2;
+ fid | mb  
+-----+-----
+   1 | FW1
+delete from PGA_violation2;
+PGA5=> select * from rm;
+ fid | src | dst | vol | fw0 | fw1 | fw2 | lb0 
+-----+-----+-----+-----+-----+-----+-----+-----
+   2 |   5 |   7 |     |   0 |     |     |   1
+   3 |   8 |   6 |     |   0 |     |     |   1
+   4 |   8 |   7 |     |   0 |     |     |   1
+   1 |   5 |   6 |     |   1 |     |     |   1          
 */
 
 DROP TABLE IF EXISTS PGA_policy CASCADE;
